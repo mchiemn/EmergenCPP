@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
 
     //Method to translate text to morse
     fun translate() {
-        val userString = userInputText!!.text.toString()
+        val userString = userInputText.text.toString()
         //Loop through message and translate
         for (n in 0 until userString.length) {
             when (userString[n]) {
