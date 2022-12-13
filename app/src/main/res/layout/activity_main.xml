@@ -34,6 +34,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserInputText" />
 
+    <Button
+        android:id="@+id/AlertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="207dp"
+        android:text="Enable Alert mode"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MorseCode" />
+
     <TextView
         android:id="@+id/MorseCode"
         android:layout_width="0dp"
@@ -41,13 +52,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="267dp"
         android:gravity="center"
         android:lineSpacingExtra="8sp"
         android:textAlignment="center"
         android:textColor="@color/textColor"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/UserInputText"
+        app:layout_constraintBottom_toTopOf="@+id/AlertButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

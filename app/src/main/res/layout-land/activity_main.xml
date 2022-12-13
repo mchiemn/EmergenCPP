@@ -62,6 +62,16 @@
         app:layout_constraintStart_toEndOf="@+id/UserInputText" />
 
     <Button
+        android:id="@+id/AlertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="36dp"
+        android:text="Enable Alert mode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FlashButton" />
+
+    <Button
         android:id="@+id/btnToggleDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

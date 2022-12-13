@@ -1,13 +1,11 @@
 package com.EmergenCPP
 
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
+import android.os.Vibrator
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -16,17 +14,15 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import java.io.FileNotFoundException
-import java.io.IOException
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var userInputText: EditText
     private lateinit var translateButton: Button
     private lateinit var flashButton: Button
-//    var uploadImage: Button? = null
     private lateinit var btnToggleDark: Button
+    private lateinit var alertButton: Button
     private lateinit var morseCode: TextView
-//    var bitmap: Bitmap? = null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +38,13 @@ class MainActivity : AppCompatActivity() {
         flashButton = findViewById(R.id.FlashButton)
         morseCode = findViewById(R.id.MorseCode)
         btnToggleDark = findViewById(R.id.btnToggleDark)
+        alertButton = findViewById(R.id.AlertButton)
 
         //Saving State of app using SHaredPreferences
         val sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val isDarkModeOn = sharedPreferences.getBoolean("isDarkModeOn", false)
+        var isAlertModeOn = false
 
         //When user reopens app after mode
         if (isDarkModeOn) {
@@ -90,15 +88,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-//        //Button to upload image and get text from the image
-//        uploadImage.setOnClickListener(View.OnClickListener {
-//            startActivityForResult(
-//                Intent(
-//                    Intent.ACTION_PICK,
-//                    MediaStore.Images.Media.INTERNAL_CONTENT_URI
-//                ), GET_FROM_GALLERY
-//            )
-//        })
+        alertButton.setOnClickListener(View.OnClickListener {
+            if (isAlertModeOn) {
+                alertMode(false)
+                isAlertModeOn = false
+                alertButton.setText("Enable Alert Mode")
+            } else {
+                alertMode(true)
+                isAlertModeOn = true
+                alertButton.setText("Disable Alert Mode")
+            }
+        })
     }
 
     //Method to translate text to morse
@@ -166,61 +166,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        //Detect the requested codes
-//        if (requestCode == GET_FROM_GALLERY && resultCode == RESULT_OK) {
-//            val selectedImage = data!!.data
-//            try {
-//                bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
-//            } catch (e: FileNotFoundException) {
-//                e.printStackTrace()
-//            } catch (e: IOException) {
-//                e.printStackTrace()
-//            }
-//        }
-//        imageToText() //Run method to detect text from image
-    }
-
-//    fun imageToText() {
-//        val image: InputImage = InputImage.fromBitmap(bitmap, 0)
-//        val recognizer: TextRecognizer = TextRecognition.getClient()
-//        val result: Task<Text> =
-//            recognizer.process(image).addOnSuccessListener(object : OnSuccessListener<Text?>() {
-//                fun onSuccess(visionText: Text) {
-//                    //Task is completed successfully, run processTextBlock method
-//                    processTextBlock(visionText)
-//                }
-//            }).addOnFailureListener(object : OnFailureListener() {
-//                fun onFailure(e: Exception) {
-//                    //Task has failed with an exception
-//                    e.printStackTrace()
-//                }
-//            })
-//    }
-
-    //Method to process the text to a string variable
-//    private fun processTextBlock(result: Text) {
-//        val resultText: String = result.getText()
-//        for (block in result.getTextBlocks()) {
-//            val blockText: String = block.getText()
-//            val blockCornerPoints: Array<Point> = block.getCornerPoints()
-//            val blockFrame: Rect = block.getBoundingBox()
-//            for (line in block.getLines()) {
-//                val lineText: String = line.getText()
-//                val lineCornerPoints: Array<Point> = line.getCornerPoints()
-//                val lineFrame: Rect = line.getBoundingBox()
-//                for (element in line.getElements()) {
-//                    val elementText: String = element.getText()
-//                    val elementCornerPoints: Array<Point> = element.getCornerPoints()
-//                    val elementFrame: Rect = element.getBoundingBox()
-//                }
-//            }
-//        }
-//        //Set the userInputText field to text that is detected from image
-//        userInputText!!.setText(resultText)
-//    }
 
     //Method to flash Morse code
     @RequiresApi(Build.VERSION_CODES.M)
@@ -250,6 +195,22 @@ class MainActivity : AppCompatActivity() {
                     else -> Thread.sleep(250)
                 }
             }
+        }
+    }
+
+    //Method to flash Morse code
+    @RequiresApi(Build.VERSION_CODES.M)
+    @Throws(InterruptedException::class)
+    fun alertMode(status: Boolean) {
+        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+        if(status){
+            val pattern = longArrayOf(0, 1000, 1000)
+            vibrator.vibrate(pattern, 0)
+            flashOn()
+        }
+        else{
+            vibrator.cancel()
+            flashOff()
         }
     }
 
