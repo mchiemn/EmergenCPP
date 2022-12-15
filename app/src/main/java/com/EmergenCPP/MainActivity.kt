@@ -213,6 +213,7 @@ class MainActivity : AppCompatActivity() {
             flashOff()
         }
     }
+    
 
     //Method to turn get access and turn on flash
     @RequiresApi(Build.VERSION_CODES.M)
