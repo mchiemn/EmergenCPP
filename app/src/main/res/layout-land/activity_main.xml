@@ -12,7 +12,7 @@
         android:id="@+id/UserInputText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="12dp"
         android:ems="10"
         android:gravity="center_horizontal"
@@ -20,7 +20,7 @@
         android:textAlignment="center"
         android:textColor="@color/textColor"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/btnToggleDark" />
+        app:layout_constraintEnd_toStartOf="@+id/AlertButton" />
 
     <Button
         android:id="@+id/TranslateButton"
@@ -37,49 +37,46 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="45dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="61dp"
         android:gravity="center"
         android:lineSpacingExtra="8sp"
         android:textAlignment="center"
         android:textColor="@color/textColor"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/UserInputText"
+        app:layout_constraintBottom_toBottomOf="@+id/UserInputText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/FlashButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="79dp"
-        android:layout_marginEnd="75dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="41dp"
         android:text="Flash it!"
-        app:layout_constraintBaseline_toBaselineOf="@+id/UserInputText"
-        app:layout_constraintEnd_toEndOf="@+id/MorseCode"
-        app:layout_constraintStart_toEndOf="@+id/UserInputText" />
+        app:layout_constraintEnd_toEndOf="@+id/AlertButton"
+        app:layout_constraintTop_toBottomOf="@+id/AlertButton" />
 
     <Button
         android:id="@+id/AlertButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="34dp"
         android:text="Enable Alert mode"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/FlashButton" />
+        app:layout_constraintTop_toBottomOf="@+id/MorseCode" />
 
     <Button
         android:id="@+id/btnToggleDark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"
+        android:layout_marginTop="16dp"
         android:text="Enable Dark Mode"
-        app:layout_constraintBottom_toBottomOf="@+id/FlashButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/UserInputText" />
+        app:layout_constraintStart_toStartOf="@+id/MorseCode"
+        app:layout_constraintTop_toBottomOf="@+id/MorseCode" />
 
     <ImageView
         android:id="@+id/imageView"
