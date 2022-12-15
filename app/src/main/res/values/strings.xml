@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">EmergenCPP</string>
+    <string name="disable_dark">Disable Dark Mode</string>
+    <string name="enable_dark">Enable Dark Mode</string>
+    <string name="enable_alert">Enable Alert Mode</string>
+    <string name="disable_alert">Disable Alert Mode</string>
+    <string name="translated_toast">Translated!</string>
+    <string name="no_text_toast">No Morse Code to Translate</string>
+
 </resources>

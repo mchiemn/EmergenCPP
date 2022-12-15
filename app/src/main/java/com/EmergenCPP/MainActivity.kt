@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     fun init() {
         userInputText = findViewById(R.id.UserInputText)
         translateButton = findViewById(R.id.TranslateButton)
-//        uploadImage = findViewById(R.id.UploadButton)
         flashButton = findViewById(R.id.FlashButton)
         morseCode = findViewById(R.id.MorseCode)
         btnToggleDark = findViewById(R.id.btnToggleDark)
@@ -49,10 +48,10 @@ class MainActivity : AppCompatActivity() {
         //When user reopens app after mode
         if (isDarkModeOn) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            btnToggleDark.setText("Disable Dark Mode")
+            btnToggleDark.setText(getString(R.string.disable_dark))
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            btnToggleDark.setText("Enable Dark Mode")
+            btnToggleDark.setText(getString(R.string.enable_dark))
         }
 
         //When user taps the dark mode button
@@ -61,12 +60,12 @@ class MainActivity : AppCompatActivity() {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 editor.putBoolean("isDarkModeOn", false)
                 editor.apply()
-                btnToggleDark.setText("Enable Dark Mode")
+                btnToggleDark.setText(getString(R.string.enable_dark))
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 editor.putBoolean("isDarkModeOn", true)
                 editor.apply()
-                btnToggleDark.setText("Disable Dark Mode)")
+                btnToggleDark.setText(getString(R.string.disable_dark))
             }
         })
 
@@ -76,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             morseCode.setText("") //Clear TextView for another translation
             translate()
             flashButton.setVisibility(View.VISIBLE)
-            Toast.makeText(this@MainActivity, "Translated!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, getString(R.string.translated_toast), Toast.LENGTH_SHORT).show()
         })
 
         //Use flashlight to flash Morse code on click
@@ -92,11 +91,11 @@ class MainActivity : AppCompatActivity() {
             if (isAlertModeOn) {
                 alertMode(false)
                 isAlertModeOn = false
-                alertButton.setText("Enable Alert Mode")
+                alertButton.setText(getString(R.string.enable_alert))
             } else {
                 alertMode(true)
                 isAlertModeOn = true
-                alertButton.setText("Disable Alert Mode")
+                alertButton.setText(getString(R.string.disable_alert))
             }
         })
     }
@@ -107,61 +106,61 @@ class MainActivity : AppCompatActivity() {
         //Loop through message and translate
         for (n in 0 until userString.length) {
             when (userString[n]) {
-                ' ' -> morseCode!!.append("/ ")
-                'a', 'A' -> morseCode!!.append(".- ")
-                'b', 'B' -> morseCode!!.append("-... ")
-                'c', 'C' -> morseCode!!.append("-.-. ")
-                'd', 'D' -> morseCode!!.append("-.. ")
-                'e', 'E' -> morseCode!!.append(". ")
-                'f', 'F' -> morseCode!!.append("..-. ")
-                'g', 'G' -> morseCode!!.append("--. ")
-                'h', 'H' -> morseCode!!.append(".... ")
-                'i', 'I' -> morseCode!!.append(".. ")
-                'j', 'J' -> morseCode!!.append(".--- ")
-                'k', 'K' -> morseCode!!.append("-.- ")
-                'l', 'L' -> morseCode!!.append(".-.. ")
-                'm', 'M' -> morseCode!!.append("-- ")
-                'n', 'N' -> morseCode!!.append("-. ")
-                'o', 'O' -> morseCode!!.append("--- ")
-                'p', 'P' -> morseCode!!.append(".--. ")
-                'q', 'Q' -> morseCode!!.append("--.- ")
-                'r', 'R' -> morseCode!!.append(".-. ")
-                's', 'S' -> morseCode!!.append("... ")
-                't', 'T' -> morseCode!!.append("- ")
-                'u', 'U' -> morseCode!!.append("..- ")
-                'v', 'V' -> morseCode!!.append("...- ")
-                'w', 'W' -> morseCode!!.append(".-- ")
-                'x', 'X' -> morseCode!!.append("-..- ")
-                'y', 'Y' -> morseCode!!.append("-.-- ")
-                'z', 'Z' -> morseCode!!.append("--.. ")
-                '1' -> morseCode!!.append(".---- ")
-                '2' -> morseCode!!.append("..--- ")
-                '3' -> morseCode!!.append("...-- ")
-                '4' -> morseCode!!.append("....- ")
-                '5' -> morseCode!!.append("..... ")
-                '6' -> morseCode!!.append("-.... ")
-                '7' -> morseCode!!.append("--... ")
-                '8' -> morseCode!!.append("---.. ")
-                '9' -> morseCode!!.append("----. ")
-                '0' -> morseCode!!.append("----- ")
-                '.' -> morseCode!!.append(".-.-.- ")
-                ',' -> morseCode!!.append("--..-- ")
-                '?' -> morseCode!!.append("..--.. ")
-                '!' -> morseCode!!.append("-.-.-- ")
-                '"' -> morseCode!!.append(".-..-. ")
-                '\'' -> morseCode!!.append(".----. ")
-                '(' -> morseCode!!.append("-.--. ")
-                ')' -> morseCode!!.append("-.--.- ")
-                '&' -> morseCode!!.append(".-... ")
-                ':' -> morseCode!!.append("---... ")
-                ';' -> morseCode!!.append("-.-.-. ")
-                '/' -> morseCode!!.append("-..-. ")
-                '_' -> morseCode!!.append("..--.- ")
-                '=' -> morseCode!!.append("-...- ")
-                '+' -> morseCode!!.append(".-.-. ")
-                '-' -> morseCode!!.append("-....- ")
-                '$' -> morseCode!!.append("...-..- ")
-                '@' -> morseCode!!.append(".--.-. ")
+                ' ' -> morseCode.append("/ ")
+                'a', 'A' -> morseCode.append(".- ")
+                'b', 'B' -> morseCode.append("-... ")
+                'c', 'C' -> morseCode.append("-.-. ")
+                'd', 'D' -> morseCode.append("-.. ")
+                'e', 'E' -> morseCode.append(". ")
+                'f', 'F' -> morseCode.append("..-. ")
+                'g', 'G' -> morseCode.append("--. ")
+                'h', 'H' -> morseCode.append(".... ")
+                'i', 'I' -> morseCode.append(".. ")
+                'j', 'J' -> morseCode.append(".--- ")
+                'k', 'K' -> morseCode.append("-.- ")
+                'l', 'L' -> morseCode.append(".-.. ")
+                'm', 'M' -> morseCode.append("-- ")
+                'n', 'N' -> morseCode.append("-. ")
+                'o', 'O' -> morseCode.append("--- ")
+                'p', 'P' -> morseCode.append(".--. ")
+                'q', 'Q' -> morseCode.append("--.- ")
+                'r', 'R' -> morseCode.append(".-. ")
+                's', 'S' -> morseCode.append("... ")
+                't', 'T' -> morseCode.append("- ")
+                'u', 'U' -> morseCode.append("..- ")
+                'v', 'V' -> morseCode.append("...- ")
+                'w', 'W' -> morseCode.append(".-- ")
+                'x', 'X' -> morseCode.append("-..- ")
+                'y', 'Y' -> morseCode.append("-.-- ")
+                'z', 'Z' -> morseCode.append("--.. ")
+                '1' -> morseCode.append(".---- ")
+                '2' -> morseCode.append("..--- ")
+                '3' -> morseCode.append("...-- ")
+                '4' -> morseCode.append("....- ")
+                '5' -> morseCode.append("..... ")
+                '6' -> morseCode.append("-.... ")
+                '7' -> morseCode.append("--... ")
+                '8' -> morseCode.append("---.. ")
+                '9' -> morseCode.append("----. ")
+                '0' -> morseCode.append("----- ")
+                '.' -> morseCode.append(".-.-.- ")
+                ',' -> morseCode.append("--..-- ")
+                '?' -> morseCode.append("..--.. ")
+                '!' -> morseCode.append("-.-.-- ")
+                '"' -> morseCode.append(".-..-. ")
+                '\'' -> morseCode.append(".----. ")
+                '(' -> morseCode.append("-.--. ")
+                ')' -> morseCode.append("-.--.- ")
+                '&' -> morseCode.append(".-... ")
+                ':' -> morseCode.append("---... ")
+                ';' -> morseCode.append("-.-.-. ")
+                '/' -> morseCode.append("-..-. ")
+                '_' -> morseCode.append("..--.- ")
+                '=' -> morseCode.append("-...- ")
+                '+' -> morseCode.append(".-.-. ")
+                '-' -> morseCode.append("-....- ")
+                '$' -> morseCode.append("...-..- ")
+                '@' -> morseCode.append(".--.-. ")
             }
         }
     }
@@ -171,11 +170,11 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     @Throws(InterruptedException::class)
     fun flashMorse() {
-        if (morseCode!!.text.toString().isEmpty()) {
-            Toast.makeText(this@MainActivity, "No Morse Code to Translate", Toast.LENGTH_SHORT)
+        if (morseCode.text.toString().isEmpty()) {
+            Toast.makeText(this@MainActivity, getString(R.string.no_text_toast), Toast.LENGTH_SHORT)
                 .show()
         } else {
-            val morse = morseCode!!.text.toString()
+            val morse = morseCode.text.toString()
             for (n in 0 until morse.length) {
                 val m = morse[n].toString()
                 when (m) {
